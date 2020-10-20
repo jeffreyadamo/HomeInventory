@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const tableNames = require('./tableNames');
 // Drop in order of dependence (manufacturer is depended on address)
 module.exports = [

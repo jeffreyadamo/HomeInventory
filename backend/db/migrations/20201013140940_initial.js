@@ -1,4 +1,4 @@
-// exports.up is creating database datbase and migrations between tables
+// exports.up is creating database database and migrations between tables
 // Use async/await to since it may have to be done in order
 const Knex = require('knex');
 /**

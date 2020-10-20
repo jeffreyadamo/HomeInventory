@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt');
 const Knex = require('knex');
 const tableNames = require('../../src/constants/tableNames');
 const orderedTableNames = require('../../src/constants/orderedTableNames');
-const countries = require('../../src/constants/countries')
+const countries = require('../../src/constants/countries');
+const states = require('../../src/constants/states');
 
 /**
  * @param {Knex} knex
@@ -36,11 +37,5 @@ exports.seed = async (knex) => {
     .insert(countries);
 
   await knex(tableNames.state)
-    .insert([{
-      name: 'WA',
-    }, {
-      name: 'AZ',
-    }, {
-      name: 'CA',
-    }]);
+    .insert(states);
 };
