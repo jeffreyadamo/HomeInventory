@@ -1,40 +1,18 @@
 // exports.up is creating database database and migrations between tables
 // Use async/await to since it may have to be done in order
+
 const Knex = require('knex');
 /**
  * @param {Knex} knex
  */
 const tableNames = require('../../src/constants/tableNames');
-
-function addDefaultColumns(table) {
-  table.timestamps(false, true);
-  table.datetime('deleted_at');
-}
-
-function createNameTable(knex, table_name) {
-  return knex.schema.createTable(table_name, (table) => {
-    table.increments().notNullable(); // creates column "id"
-    table.string('name').notNullable().unique();
-    addDefaultColumns(table);
-  });
-}
-
-function references(table, tableName) {
-  table
-    .integer(`${tableName}_id`)
-    .unsigned()
-    .references('id')
-    .inTable(tableName)
-    .onDelete('cascade');
-}
-
-function url(table, columnName) {
-  table.string(columnName, 2000);
-}
-
-function email(table, columnName) {
-  return table.string(columnName, 254);
-}
+const {
+  addDefaultColumns,
+  createNameTable,
+  references,
+  url,
+  email,
+} = require('../../src/lib/tableUtils');
 /**
  * @param {Knex} knex
  */
@@ -110,15 +88,17 @@ exports.up = async (knex) => {
 };
 // exports.down specifies dropping of all the tables
 exports.down = async (knex) => {
-  await Promise.all([
-    tableNames.address,
-    tableNames.user,
-    tableNames.item_type,
-    tableNames.state,
-    tableNames.country,
-    tableNames.shape,
-    tableNames.location,
-  ].map((tableName) => knex.schema.dropTable(tableName)));
+  await Promise.all(
+    [
+      tableNames.address,
+      tableNames.user,
+      tableNames.item_type,
+      tableNames.state,
+      tableNames.country,
+      tableNames.shape,
+      tableNames.location,
+    ].map((tableName) => knex.schema.dropTable(tableName)),
+  );
 
   // if only dropping one table try:
   // await knex.schema.dropTable(tableNames.user);
