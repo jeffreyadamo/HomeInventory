@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 function addDefaultColumns(table) {
   table.timestamps(false, true);
+  // knex automatically adds update_at and created_at, we're adding deleted_at
   table.datetime('deleted_at');
 }
 
@@ -12,14 +13,17 @@ function createNameTable(knex, table_name) {
   });
 }
 
-function references(table, tableName) {
-  table
+function references(table, tableName, notNullable = true) {
+  const definition = table
     .integer(`${tableName}_id`)
     .unsigned()
     .references('id')
     .inTable(tableName)
     .onDelete('cascade');
-  // TODO: should this be not nullable???
+
+  if (notNullable) {
+    definition.notNullable();
+  }
 }
 
 function url(table, columnName) {

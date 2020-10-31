@@ -69,8 +69,9 @@ exports.up = async (knex) => {
     table.float('longitude').notNullable();
     // FOREIGN KEYS
     // 'unsigned indicates integer can only be positive
-    table.integer('state_id').unsigned().references('id').inTable('state');
+    // table.integer('state_id').unsigned().references('id').inTable('state');
     // instead of doing this for every foreign key, we can use a helper function
+    references(table, 'state', false);
     references(table, 'country');
     addDefaultColumns(table);
   });
@@ -90,6 +91,7 @@ exports.up = async (knex) => {
 exports.down = async (knex) => {
   await Promise.all(
     [
+      tableNames.manufacturer,
       tableNames.address,
       tableNames.user,
       tableNames.item_type,
