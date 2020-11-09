@@ -8,7 +8,7 @@ YouTube Channel: https://www.youtube.com/playlist?list=PLM_i0obccy3uJ876-W_BKBzj
 ## Key Features I'm trying to learn:
 ### Backend
 * PostgreSQL - alternative to MySQL for SQL relationship database
-* [Knex.js](http://knexjs.org/#Installation-client) - SQL query builder. Compatable with MySQL for future use! May include with Objection.js. Going to forego using Sequelize for this one.
+* [Knex.js](http://knexjs.org/#Installation-client) - SQL query builder. Compatable with MySQL for future use! May include with Objection.js. Going to forego using Sequelize for this one. This allows for us to design the database first. 
 * Docker - container creates an image to ensure user's running environment is standardized (first experience with this; tricky)
 * Entity Models - [Home Inventory ET Diagram](https://app.lucidchart.com/invitations/accept/305365a9-5493-4958-8ead-386f98334a4d) using LucidChart
 * ESLint setup
@@ -16,6 +16,7 @@ YouTube Channel: https://www.youtube.com/playlist?list=PLM_i0obccy3uJ876-W_BKBzj
 * Haven't started yet
 
 ## Where am I at?
+* 10/30 - updating the migration files as the database tables are being updated
 * 10/19 - Fire up your PostgreSQL, we can seed a database. Docker isn't quite working yet. 
 I'm finishing up Video#3 and am beginning to seed the database.  
 So far I have 3 starting scripts in package.json:
