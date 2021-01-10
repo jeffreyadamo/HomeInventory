@@ -1,6 +1,7 @@
 // exports.up is creating database database and migrations between tables
 // Use async/await to since it may have to be done in order
 
+// eslint-disable-next-line no-unused-vars
 const Knex = require('knex');
 /**
  * @param {Knex} knex
@@ -46,7 +47,7 @@ exports.up = async (knex) => {
     createNameTable(knex, tableNames.shape),
 
     // creating the location table
-    knex.schema.createTable(tableNames.location, (table) => {
+    knex.schema.createTable(tableNames.inventory_location, (table) => {
       table.increments().notNullable(); // creates column "id"
       table.string('name').notNullable().unique();
       table.string('description', 1000);
@@ -76,7 +77,7 @@ exports.up = async (knex) => {
     addDefaultColumns(table);
   });
 
-  await knex.schema.createTable(tableNames.manufacturer, (table) => {
+  await knex.schema.createTable(tableNames.company, (table) => {
     table.increments().notNullable(); // creates column "id"
     table.string('name').notNullable();
     table.string('description', 1000);
@@ -91,14 +92,14 @@ exports.up = async (knex) => {
 exports.down = async (knex) => {
   await Promise.all(
     [
-      tableNames.manufacturer,
+      tableNames.company,
       tableNames.address,
       tableNames.user,
       tableNames.item_type,
       tableNames.state,
       tableNames.country,
       tableNames.shape,
-      tableNames.location,
+      tableNames.inventory_location,
     ].map((tableName) => knex.schema.dropTable(tableName)),
   );
 

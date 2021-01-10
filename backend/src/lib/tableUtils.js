@@ -13,9 +13,9 @@ function createNameTable(knex, table_name) {
   });
 }
 
-function references(table, tableName, notNullable = true) {
+function references(table, tableName, notNullable = true, columnName = '') {
   const definition = table
-    .integer(`${tableName}_id`)
+    .integer(`${columnName || tableName}_id`)
     .unsigned()
     .references('id')
     .inTable(tableName)
@@ -24,6 +24,7 @@ function references(table, tableName, notNullable = true) {
   if (notNullable) {
     definition.notNullable();
   }
+  return definition;
 }
 
 function url(table, columnName) {

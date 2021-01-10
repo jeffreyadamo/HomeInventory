@@ -16,6 +16,7 @@ YouTube Channel: https://www.youtube.com/playlist?list=PLM_i0obccy3uJ876-W_BKBzj
 * Haven't started yet
 
 ## Where am I at?
+* 1/8 - finished up database design. 2 backend/db/migrations files should be mostly formed. Next epiode is #07 - looks to be working on seeding data into the database. 
 * 10/30 - updating the migration files as the database tables are being updated
 * 10/19 - Fire up your PostgreSQL, we can seed a database. Docker isn't quite working yet. 
 I'm finishing up Video#3 and am beginning to seed the database.  
