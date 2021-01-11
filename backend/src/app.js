@@ -4,6 +4,8 @@ const compression = require('compression');
 const helmet = require('helmet');
 
 const middlewares = require('./middlewares');
+const api = require('./api');
+const project = require('./constants/project');
 
 const app = express();
 app.use(morgan('tiny'));
@@ -13,9 +15,11 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
   res.json({
-    message: '🎁Home Inventory API🎁',
+    message: project.message,
   });
 });
+
+app.use('/api/v1', api);
 
 // TODO: add error handling
 app.use(middlewares.notFound);
